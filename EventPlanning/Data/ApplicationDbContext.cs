@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using EventPlanning.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventPlanning.Data
@@ -9,5 +10,16 @@ namespace EventPlanning.Data
             : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+
+        }
+
+        public DbSet<Event> Events { get; set; }
+        public DbSet<EventType> EventTypes { get; set; }
+        public DbSet<EventSubtype> eventSubtypes { get; set; }
     }
 }
