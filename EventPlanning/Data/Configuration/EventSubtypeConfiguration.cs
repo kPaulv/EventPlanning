@@ -5,7 +5,7 @@ using EventPlanning.Data.Entities;
 
 namespace EventPlanning.Data.Configuration
 {
-    public class EventSubtypeConfiguration
+    public class EventSubtypeConfiguration : IEntityTypeConfiguration<EventSubtype>
     {
         public void Configure(EntityTypeBuilder<EventSubtype> builder)
         {

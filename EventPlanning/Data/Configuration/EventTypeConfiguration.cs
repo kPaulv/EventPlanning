@@ -5,22 +5,20 @@ using EventPlanning.Data.Entities;
 
 namespace EventPlanning.Data.Configuration
 {
-    public class EventConfiguration
+    public class EventTypeConfiguration : IEntityTypeConfiguration<EventType>
     {
-        public void Configure(EntityTypeBuilder<Event> builder)
+        public void Configure(EntityTypeBuilder<EventType> builder)
         {
             builder.HasData(
-                new Event
+                new EventType
                 {
                     Id = 1,
-                    Name = "Football Match",
-                    TypeId = 1
+                    Name = "Sport",
                 },
-                new Event
+                new EventType
                 {
                     Id = 2,
-                    Name = "Test Event",
-                    TypeId = 2
+                    Name = "Music",
                 }
             );
         }
