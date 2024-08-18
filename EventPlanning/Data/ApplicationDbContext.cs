@@ -1,4 +1,5 @@
-﻿using EventPlanning.Data.Entities;
+﻿using EventPlanning.Data.Configuration;
+using EventPlanning.Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +16,10 @@ namespace EventPlanning.Data
         {
             base.OnModelCreating(modelBuilder);
 
-
+            modelBuilder.ApplyConfiguration(new EventConfiguration());
+            modelBuilder.ApplyConfiguration(new EventTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new EventSubtypeConfiguration());
+            modelBuilder.ApplyConfiguration(new IdentityRoleConfiguration());
         }
 
         public DbSet<Event> Events { get; set; }
