@@ -20,6 +20,8 @@ namespace EventPlanning.Data
             modelBuilder.ApplyConfiguration(new EventTypeConfiguration());
             modelBuilder.ApplyConfiguration(new EventSubtypeConfiguration());
             modelBuilder.ApplyConfiguration(new IdentityRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new IdentityUserConfiguration());
+            modelBuilder.ApplyConfiguration(new IdentityUserRoleConfiguration());
         }
 
         public DbSet<Event> Events { get; set; }

@@ -10,7 +10,7 @@ namespace EventPlanning.Data.Configuration
         {
             builder.HasData(
                 new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" },
-                new IdentityRole { Name = "Guest", NormalizedName = "Guest" }
+                new IdentityRole { Name = "Guest", NormalizedName = "GUEST" }
             );
         }
     }
