@@ -14,6 +14,16 @@
 		}
 		else
 		{
+			if (Model.IsAdminUser)
+			{
+				<button id="create-event-btn" type="button" 
+					class="btn-sm" 
+					onclick="document.location.href = '@Url.Action("Index", "Event")'">
+					Create New Event
+					</button>
+				<br/>
+				<br/>
+			}
 			<table class="table table-hover table-bordered">
 				<tr>
 					<th>Event</th>
@@ -36,12 +46,21 @@
 									}
 								</ul>
 						</td>
-						<td>Required</td>
-						<td>Add</td>
-						<td>Kalva</td>
+						<td>@e.Dresscode</td>
+						<td>@e.Participants</td>
+						<td>@e.Location</td>
 					</tr>
 				}
 			</table>
 		}
 	}
 </div>
+
+<script type="text/javascript">
+	function CreateEvent(){
+		document.location.href = '@Url.Action("Index", "Event")';
+	}
+	$('create-event-btn').click(function () {
+		document.location = @Url.Action("Index","Event");
+	});
+</script>

@@ -1,7 +1,10 @@
-﻿namespace EventPlanning.Models.Output
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EventPlanning.Models.Output
 {
 	public class EventOutputDto
 	{
+		[Required]
 		public string Name { get; set; }
 		public string Topic { get; set; }
 		public string Subtopic { get; set; }
