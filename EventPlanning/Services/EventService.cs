@@ -1,13 +1,16 @@
 ﻿using EventPlanning.Data;
 using EventPlanning.Data.Entities;
 using EventPlanning.Models.Input;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System.Xml.Linq;
 
 namespace EventPlanning.Services
 {
 	public interface IEventService
 	{
-		void CreateEvent(EventInputDto eventInputDto);
+		Task CreateEventAsync(EventInputDto eventInputDto);
+		Task RegisterUserAsync(IdentityUser user, Event @event);
 	}
 	public class EventService : IEventService
 	{
@@ -18,7 +21,7 @@ namespace EventPlanning.Services
 			_dbContext = dbContext;
 		}
 
-		public void CreateEvent(EventInputDto eventInputDto)
+		public async Task CreateEventAsync(EventInputDto eventInputDto)
 		{
 			int typeId;
 
@@ -60,8 +63,15 @@ namespace EventPlanning.Services
 				Location = location,
 			};
 			_dbContext.Events.Add(e);
-			_dbContext.SaveChangesAsync();
-			Thread.Sleep(3000);
+			var res = await _dbContext.SaveChangesAsync();
+			//Thread.Sleep(3000);
 		}
+
+		public async Task RegisterUserAsync(IdentityUser user, Event selectedEvent) {
+
+			await Task.Run(() => { });
+		}
+
+
 	}
 }

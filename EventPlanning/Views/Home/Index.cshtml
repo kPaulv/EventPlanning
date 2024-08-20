@@ -14,15 +14,15 @@
 		}
 		else
 		{
-			if (Model.IsAdminUser)
+			if (Model.UserRole == "Admin")
 			{
-				<button id="create-event-btn" type="button" 
-					class="btn-sm" 
-					onclick="document.location.href = '@Url.Action("Index", "Event")'">
+				<button id="create-event-btn" type="button"
+				class="btn-sm"
+				onclick="document.location.href = '@Url.Action("Index", "Event")'">
 					Create New Event
-					</button>
-				<br/>
-				<br/>
+				</button>
+				<br />
+				<br />
 			}
 			<table class="table table-hover table-bordered">
 				<tr>
@@ -32,23 +32,38 @@
 					<th>Dresscode</th>
 					<th>Participants</th>
 					<th>Location</th>
+					@if (Model.UserRole == "Guest")
+					{
+						<th>Registration</th>
+					}
 				</tr>
 				@foreach (EventPlanning.Data.Entities.Event e in Model.Events)
 				{
 					<tr>
-						<td>@e.Name</td>
-						<td>@e.Type.Name</td>
-						<td>
+						@using (Html.BeginForm("RegisterUser", "Event", FormMethod.Post))
+						{
+							<td name="eventName">@e.Name</td>
+							<td>@e.Type.Name</td>
+							<td>
 								<ul class="list-group">
 									@foreach (EventPlanning.Data.Entities.EventSubtype s in e.Type.Subtypes)
 									{
 										<li class="list-group-item" style="border: none">@s.Name</li>
 									}
 								</ul>
-						</td>
-						<td>@e.Dresscode</td>
-						<td>@e.Participants</td>
-						<td>@e.Location</td>
+							</td>
+							<td>@e.Dresscode</td>
+							<td>@e.Participants</td>
+							<td>@e.Location</td>
+							@if (Model.UserRole == "Guest")
+							{
+								<td>
+									<button id="sign-for-event-btn" type="submit" class="btn-light">
+										Sign up
+									</button>
+								</td>
+							}
+						}
 					</tr>
 				}
 			</table>
@@ -57,7 +72,7 @@
 </div>
 
 <script type="text/javascript">
-	function CreateEvent(){
+	function CreateEvent() {
 		document.location.href = '@Url.Action("Index", "Event")';
 	}
 	$('create-event-btn').click(function () {

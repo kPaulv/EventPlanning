@@ -36,7 +36,7 @@ namespace EventPlanning.Controllers
 
 		[Authorize]
         [HttpPost]
-        public ActionResult Create(string name, string topic, string subtopics,
+        public async Task<ActionResult> Create(string name, string topic, string subtopics,
 			string dresscode, string location, string participants)
 		{
 			EventInputDto input = new EventInputDto
@@ -49,10 +49,22 @@ namespace EventPlanning.Controllers
 				Location = location,
 			};
 
-			_eventService.CreateEvent(input);
+			await _eventService.CreateEventAsync(input);
 
 			return View("Index", true);
 		}
 
-    }
+		[Authorize]
+		[HttpPost]
+		public ActionResult RegisterUser(string EventName)
+		{
+			var user = _userManager.GetUserAsync(User);
+			
+
+			//_eventService.CreateEvent(input);
+
+			return View("Index", true);
+		}
+
+	}
 }

@@ -2,7 +2,7 @@
 {
     public class EventsDisplayModel
     {
-        public bool IsAdminUser { get; set; } = false;
+        public string UserRole { get; set; } = "Guest";
         public List<Data.Entities.Event> Events { get; set; }
     }
 }

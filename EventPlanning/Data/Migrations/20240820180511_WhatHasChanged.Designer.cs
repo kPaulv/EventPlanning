@@ -4,6 +4,7 @@ using EventPlanning.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventPlanning.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240820180511_WhatHasChanged")]
+    partial class WhatHasChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +52,21 @@ namespace EventPlanning.Data.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Events", (string)null);
+                    b.ToTable("Events");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Football Match",
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Test Event",
+                            TypeId = 2
+                        });
                 });
 
             modelBuilder.Entity("EventPlanning.Data.Entities.EventSubtype", b =>
@@ -72,7 +88,21 @@ namespace EventPlanning.Data.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("eventSubtypes", (string)null);
+                    b.ToTable("eventSubtypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Rock",
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Classical music",
+                            TypeId = 2
+                        });
                 });
 
             modelBuilder.Entity("EventPlanning.Data.Entities.EventType", b =>
@@ -89,7 +119,19 @@ namespace EventPlanning.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EventTypes", (string)null);
+                    b.ToTable("EventTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Sport"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Music"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -117,6 +159,22 @@ namespace EventPlanning.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "02fc2420-7ef5-46dd-b73c-f3bb367ab55f",
+                            ConcurrencyStamp = "7e12abee-4d4a-4271-a48e-ce30f5e33418",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "f4eb8ee9-6cc7-409f-89c5-d91f69410262",
+                            ConcurrencyStamp = "45587881-3c0d-41f9-8e17-f122b5d98307",
+                            Name = "Guest",
+                            NormalizedName = "GUEST"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -207,6 +265,24 @@ namespace EventPlanning.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1e345687-a24d-4344-a6c6-9443d048cdb9",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "fd8cff20-2aba-4612-9a3c-0f21f74dd69b",
+                            Email = "youradmin@mail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "YOURADMIN@MAIL.COM",
+                            NormalizedUserName = "PAULMAUL",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAgSSkmw4SuVuok3uk6lnw8wYKAFWK06BefbbPp1Z2L7co0OYsHDPReyX6lVLzBsqQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "dff179d6-dd87-401a-8cc4-a68bde0b6951",
+                            TwoFactorEnabled = false,
+                            UserName = "paulmaul"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -271,6 +347,13 @@ namespace EventPlanning.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1e345687-a24d-4344-a6c6-9443d048cdb9",
+                            RoleId = "1a13f68d-a1d0-4d23-869b-458c301ca761"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

@@ -38,11 +38,11 @@ namespace EventPlanning.Controllers
 
             if (User.IsInRole("Admin"))
             {
-                return View(new EventsDisplayModel { IsAdminUser = true, Events = events.ToList()});
+                return View(new EventsDisplayModel { UserRole = "Admin", Events = events.ToList()});
             }
             else
             {
-                return View(new EventsDisplayModel { Events = events.ToList() });
+                return View(new EventsDisplayModel { UserRole = "Guest", Events = events.ToList() });
             }
         }
 
