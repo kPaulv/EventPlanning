@@ -4,6 +4,7 @@ using EventPlanning.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventPlanning.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240820181233_HealAllIdentity")]
+    partial class HealAllIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +23,6 @@ namespace EventPlanning.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("EventEventUser", b =>
-                {
-                    b.Property<int>("EventsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EventsId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("EventEventUser");
-                });
 
             modelBuilder.Entity("EventPlanning.Data.Entities.Event", b =>
                 {
@@ -61,30 +48,11 @@ namespace EventPlanning.Data.Migrations
                     b.Property<int>("TypeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserLimit")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("TypeId");
 
                     b.ToTable("Events");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Football Match",
-                            TypeId = 1,
-                            UserLimit = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Test Event",
-                            TypeId = 2,
-                            UserLimit = 0
-                        });
                 });
 
             modelBuilder.Entity("EventPlanning.Data.Entities.EventSubtype", b =>
@@ -107,20 +75,6 @@ namespace EventPlanning.Data.Migrations
                     b.HasIndex("TypeId");
 
                     b.ToTable("eventSubtypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Rock",
-                            TypeId = 2
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Classical music",
-                            TypeId = 2
-                        });
                 });
 
             modelBuilder.Entity("EventPlanning.Data.Entities.EventType", b =>
@@ -138,38 +92,6 @@ namespace EventPlanning.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EventTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Sport"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Music"
-                        });
-                });
-
-            modelBuilder.Entity("EventPlanning.Data.Entities.EventUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EventUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -197,22 +119,6 @@ namespace EventPlanning.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1a13f68d-a1d0-4d23-869b-458c301ca761",
-                            ConcurrencyStamp = "0c14621b-eed8-4d2b-b74a-82d08f521ae0",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "2a14f69d-a2d1-5d34-970b-569c412ca872",
-                            ConcurrencyStamp = "074ab704-6a88-4576-ac0f-5de9259be707",
-                            Name = "Guest",
-                            NormalizedName = "GUEST"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -303,24 +209,6 @@ namespace EventPlanning.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1e345687-a24d-4344-a6c6-9443d048cdb9",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "23a15e27-e330-4a0f-8cff-35c3e2bf336c",
-                            Email = "youradmin@mail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "YOURADMIN@MAIL.COM",
-                            NormalizedUserName = "PAULMAUL",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAROnbMqHpDffPl4nsOC3jLc1b/USgqBdofQk7+lqLp5vChGtwb/JkIDT3cJvEQMWw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "56691153-e4d2-4450-a6b2-16175ee24db5",
-                            TwoFactorEnabled = false,
-                            UserName = "paulmaul"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -385,13 +273,6 @@ namespace EventPlanning.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "1e345687-a24d-4344-a6c6-9443d048cdb9",
-                            RoleId = "1a13f68d-a1d0-4d23-869b-458c301ca761"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -413,21 +294,6 @@ namespace EventPlanning.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("EventEventUser", b =>
-                {
-                    b.HasOne("EventPlanning.Data.Entities.Event", null)
-                        .WithMany()
-                        .HasForeignKey("EventsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EventPlanning.Data.Entities.EventUser", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("EventPlanning.Data.Entities.Event", b =>

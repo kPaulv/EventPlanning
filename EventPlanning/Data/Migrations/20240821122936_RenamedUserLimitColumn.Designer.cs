@@ -4,6 +4,7 @@ using EventPlanning.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventPlanning.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240821122936_RenamedUserLimitColumn")]
+    partial class RenamedUserLimitColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,6 +163,7 @@ namespace EventPlanning.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
@@ -202,14 +205,14 @@ namespace EventPlanning.Data.Migrations
                         new
                         {
                             Id = "1a13f68d-a1d0-4d23-869b-458c301ca761",
-                            ConcurrencyStamp = "0c14621b-eed8-4d2b-b74a-82d08f521ae0",
+                            ConcurrencyStamp = "3507de8c-4e8a-45c8-ae07-60ff444923a4",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2a14f69d-a2d1-5d34-970b-569c412ca872",
-                            ConcurrencyStamp = "074ab704-6a88-4576-ac0f-5de9259be707",
+                            ConcurrencyStamp = "4f3bfaae-df47-42e1-aadd-cac0689f3432",
                             Name = "Guest",
                             NormalizedName = "GUEST"
                         });
@@ -309,15 +312,15 @@ namespace EventPlanning.Data.Migrations
                         {
                             Id = "1e345687-a24d-4344-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "23a15e27-e330-4a0f-8cff-35c3e2bf336c",
+                            ConcurrencyStamp = "0d345e71-e1f9-4bf5-9e6a-42b62c6d382c",
                             Email = "youradmin@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "YOURADMIN@MAIL.COM",
                             NormalizedUserName = "PAULMAUL",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAROnbMqHpDffPl4nsOC3jLc1b/USgqBdofQk7+lqLp5vChGtwb/JkIDT3cJvEQMWw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK3uRT5osT8AR0hwnZrFCkslU8kuEzi6x4Ndy1mmKynhq+gfUZdNjrhogBU5rZSbCQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "56691153-e4d2-4450-a6b2-16175ee24db5",
+                            SecurityStamp = "bad2fe5e-8d49-4072-827c-e94c4729f40d",
                             TwoFactorEnabled = false,
                             UserName = "paulmaul"
                         });

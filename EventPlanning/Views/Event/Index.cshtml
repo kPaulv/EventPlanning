@@ -1,0 +1,76 @@
+﻿@{
+	ViewData["Title"] = "Event Creation";
+	@model EventPlanning.Models.Input.EventInputDto;
+}
+
+<div class="text-center">
+	<h1 class="display-5">Create Event</h1>
+	<br />
+	@using (Html.BeginForm("Create", "Event", FormMethod.Post))
+	{
+		<form>
+			<div class="form-group row">
+				<label for="input-event-name" class="col-sm-2 col-form-label">Event Name</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="name"
+					   id="input-event-name" placeholder="Enter event name">
+				</div>
+			</div>
+			<br/>
+			<div class="form-group row">
+				<label for="input-event-type" class="col-sm-2 col-form-label">Event Topic</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="topic"
+					   id="input-event-type" placeholder="Enter event topic">
+				</div>
+			</div>
+			<br />
+			<div class="form-group row">
+				<label for="input-event-subtypes" class="col-sm-2 col-form-label">Event Subtopics</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="subtopics"
+					   id="input-event-subtypes" placeholder="Enter subtopics separated with ','">
+				</div>
+			</div>
+			<br />
+			<div class="form-group row">
+				<label for="input-event-dresscode" class="col-sm-2 col-form-label">Dresscode</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="dresscode"
+					   id="input-event-dresscode" placeholder="Enter dresscode (e.g. 'optional'/'uniform')">
+				</div>
+			</div>
+			<br />
+			<div class="form-group row">
+				<label for="input-event-location" class="col-sm-2 col-form-label">Location</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="location"
+					   id="input-event-location" placeholder="Enter location">
+				</div>
+			</div>
+			<br />
+			<div class="form-group row">
+				<label for="input-event-participants" class="col-sm-2 col-form-label">Participants</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="participants"
+					   id="input-event-participants" placeholder="Enter participants">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="input-event-limit" class="col-sm-2 col-form-label">Users Limit</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" name="limit"
+					   id="input-event-limit" placeholder="Enter users limit">
+				</div>
+			</div>
+			<br />
+
+			<div class="form-group row">
+				<div class="col-sm-10">
+					<button type="submit" class="btn btn-primary">Create</button>
+				</div>
+			</div>
+		</form>
+	}
+</div>
+

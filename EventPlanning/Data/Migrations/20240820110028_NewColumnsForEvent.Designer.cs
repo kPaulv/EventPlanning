@@ -4,6 +4,7 @@ using EventPlanning.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventPlanning.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240820110028_NewColumnsForEvent")]
+    partial class NewColumnsForEvent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +23,6 @@ namespace EventPlanning.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("EventEventUser", b =>
-                {
-                    b.Property<int>("EventsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EventsId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("EventEventUser");
-                });
 
             modelBuilder.Entity("EventPlanning.Data.Entities.Event", b =>
                 {
@@ -61,9 +48,6 @@ namespace EventPlanning.Data.Migrations
                     b.Property<int>("TypeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserLimit")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("TypeId");
@@ -75,15 +59,13 @@ namespace EventPlanning.Data.Migrations
                         {
                             Id = 1,
                             Name = "Football Match",
-                            TypeId = 1,
-                            UserLimit = 0
+                            TypeId = 1
                         },
                         new
                         {
                             Id = 2,
                             Name = "Test Event",
-                            TypeId = 2,
-                            UserLimit = 0
+                            TypeId = 2
                         });
                 });
 
@@ -152,26 +134,6 @@ namespace EventPlanning.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EventPlanning.Data.Entities.EventUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EventUser");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -201,15 +163,15 @@ namespace EventPlanning.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1a13f68d-a1d0-4d23-869b-458c301ca761",
-                            ConcurrencyStamp = "0c14621b-eed8-4d2b-b74a-82d08f521ae0",
+                            Id = "acd6f66d-8891-4b05-8926-68b9ae268690",
+                            ConcurrencyStamp = "9f037844-ec9c-4e3e-9b61-9d7a8c04c674",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "2a14f69d-a2d1-5d34-970b-569c412ca872",
-                            ConcurrencyStamp = "074ab704-6a88-4576-ac0f-5de9259be707",
+                            Id = "72130c6e-e049-4265-bf85-abbd63bdf126",
+                            ConcurrencyStamp = "8f163e4f-b52e-4fe8-8ff6-e8e422f7cb82",
                             Name = "Guest",
                             NormalizedName = "GUEST"
                         });
@@ -309,15 +271,15 @@ namespace EventPlanning.Data.Migrations
                         {
                             Id = "1e345687-a24d-4344-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "23a15e27-e330-4a0f-8cff-35c3e2bf336c",
+                            ConcurrencyStamp = "d30c90fe-024f-4c2a-84c5-40d296715da8",
                             Email = "youradmin@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "YOURADMIN@MAIL.COM",
                             NormalizedUserName = "PAULMAUL",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAROnbMqHpDffPl4nsOC3jLc1b/USgqBdofQk7+lqLp5vChGtwb/JkIDT3cJvEQMWw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEW5kRO1j9oVl+MUZ1pZ95u7DsLkFLtP8Bbzi3jdRTI41vbpdTXql+mKUZ+II+IB+Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "56691153-e4d2-4450-a6b2-16175ee24db5",
+                            SecurityStamp = "4516fd1c-176b-4c8e-a944-57898108cd62",
                             TwoFactorEnabled = false,
                             UserName = "paulmaul"
                         });
@@ -413,21 +375,6 @@ namespace EventPlanning.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("EventEventUser", b =>
-                {
-                    b.HasOne("EventPlanning.Data.Entities.Event", null)
-                        .WithMany()
-                        .HasForeignKey("EventsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EventPlanning.Data.Entities.EventUser", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("EventPlanning.Data.Entities.Event", b =>
