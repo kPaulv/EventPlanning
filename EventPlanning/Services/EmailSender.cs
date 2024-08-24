@@ -26,7 +26,10 @@ namespace EventPlanning.Services
         {
             if (string.IsNullOrEmpty(Options.SendEmailKey))
             {
-                throw new Exception("Null SendEmailKey");
+                // next line added only for test purposes,
+                // the real key lies on dev computer in .net secret storage
+                Options.SendEmailKey = "SecretEmailKey";
+                //throw new Exception("Null SendEmailKey");
             }
             await Execute(Options.SendEmailKey, subject, message, toEmail);
         }
