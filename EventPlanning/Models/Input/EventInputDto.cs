@@ -8,5 +8,6 @@
 		public string Dresscode { get; set; }
 		public string Participants { get; set; }
 		public string Location { get; set; }
+		public int UserLimit { get; set; }
 	}
 }

@@ -40,8 +40,9 @@
 				@foreach (EventPlanning.Data.Entities.Event e in Model.Events)
 				{
 					<tr>
-						@using (Html.BeginForm("RegisterUser", "Event", FormMethod.Post))
+						@using (Html.BeginForm("SignUp", "Event", FormMethod.Post))
 						{
+							@Html.Hidden("EventId", e.Id);
 							<td name="eventName">@e.Name</td>
 							<td>@e.Type.Name</td>
 							<td>

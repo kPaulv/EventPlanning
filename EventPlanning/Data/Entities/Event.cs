@@ -11,7 +11,7 @@ namespace EventPlanning.Data.Entities
         public string? Dresscode { get; set; }
         public string? Location { get; set; }
         public string? Participants { get; set; }
-        public int ParticipantsCount { get; set; }
+        public int UserLimit { get; set; }
         public List<EventUser> Users { get; set; }
     }
 }
