@@ -126,6 +126,10 @@ namespace EventPlanning.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User logged in.");
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    if(user.UserName == null || user.PhoneNumber == null)
+                    {
+                        returnUrl += "Identity/Account/Manage";
+                    }
                     return LocalRedirect(returnUrl);
                 }
                 //if (result.RequiresTwoFactor)
